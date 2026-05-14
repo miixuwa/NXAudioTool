@@ -522,18 +522,15 @@ class NXAudioApp:
         self.root.protocol("WM_DELETE_WINDOW", self._on_close)
 
     def _build_ui(self):
-        # ── Root: sidebar left, main right ──
         self.root.grid_columnconfigure(1, weight=1)
         self.root.grid_rowconfigure(0, weight=1)
 
-        # Sidebar
         sidebar = ctk.CTkFrame(self.root, fg_color=COLORS["bg_sidebar"], corner_radius=0, width=200)
         sidebar.grid(row=0, column=0, sticky="nsew")
         sidebar.grid_propagate(False)
         sidebar.grid_rowconfigure(10, weight=1)
         self._build_sidebar(sidebar)
 
-        # Main area (top bar + list + controls stacked with pack)
         main = ctk.CTkFrame(self.root, fg_color=COLORS["bg_dark"], corner_radius=0)
         main.grid(row=0, column=1, sticky="nsew")
         self._build_main(main)
@@ -569,7 +566,6 @@ class NXAudioApp:
                       hover_color=COLORS["accent_hover"], anchor="w", height=36, corner_radius=6,
                       command=self._open_convert).grid(row=9, column=0, padx=10, sticky="ew", pady=1)
 
-        # Tools status
         tools_frame = ctk.CTkFrame(sidebar, fg_color=COLORS["bg_card"], corner_radius=8)
         tools_frame.grid(row=11, column=0, padx=10, pady=16, sticky="sew")
         ctk.CTkLabel(tools_frame, text="TOOLS", font=ctk.CTkFont("Segoe UI", 10, "bold"),
@@ -584,7 +580,6 @@ class NXAudioApp:
         ctk.CTkFrame(tools_frame, height=8, fg_color="transparent").pack()
 
     def _build_main(self, main):
-        # Top bar
         topbar = ctk.CTkFrame(main, fg_color=COLORS["bg_mid"], height=48, corner_radius=0)
         topbar.pack(side="top", fill="x")
         topbar.pack_propagate(False)
@@ -600,16 +595,13 @@ class NXAudioApp:
                      placeholder_text_color=COLORS["text_dim"], width=200, height=30
                      ).pack(side="right", padx=16, pady=9)
 
-        # Player controls at bottom
         controls = ctk.CTkFrame(main, fg_color=COLORS["bg_mid"], corner_radius=0)
         controls.pack(side="bottom", fill="x")
         self._build_controls(controls)
 
-        # File list in the middle (takes remaining space)
         list_frame = ctk.CTkFrame(main, fg_color=COLORS["bg_dark"], corner_radius=0)
         list_frame.pack(side="top", fill="both", expand=True)
 
-        # Scrollable list with mouse wheel support
         self.list_canvas = tk.Canvas(list_frame, bg=COLORS["bg_dark"], highlightthickness=0, bd=0)
         scrollbar = ctk.CTkScrollbar(list_frame, command=self.list_canvas.yview,
                                      button_color=COLORS["border"],
@@ -643,7 +635,6 @@ class NXAudioApp:
         self.list_canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
 
     def _build_controls(self, parent):
-        # Track name + format
         info = ctk.CTkFrame(parent, fg_color="transparent")
         info.pack(fill="x", padx=20, pady=(12, 4))
         self.track_name_lbl = ctk.CTkLabel(info, text="No file loaded",
@@ -655,7 +646,6 @@ class NXAudioApp:
                                              text_color=COLORS["accent"], anchor="e")
         self.track_format_lbl.pack(side="right")
 
-        # Progress bar row
         prog_row = ctk.CTkFrame(parent, fg_color="transparent")
         prog_row.pack(fill="x", padx=20, pady=2)
         self.pos_lbl = ctk.CTkLabel(prog_row, text="0:00", font=ctk.CTkFont("Consolas", 10),
@@ -672,7 +662,6 @@ class NXAudioApp:
                                     text_color=COLORS["text_secondary"], width=36)
         self.dur_lbl.pack(side="right")
 
-        # Buttons row
         btn_row = ctk.CTkFrame(parent, fg_color="transparent")
         btn_row.pack(fill="x", padx=20, pady=(4, 12))
 
@@ -701,7 +690,6 @@ class NXAudioApp:
                         checkmark_color=COLORS["text_primary"], width=20
                         ).pack(side="left", padx=14)
 
-        # Volume
         vol = ctk.CTkFrame(btn_row, fg_color="transparent")
         vol.pack(side="right")
         ctk.CTkLabel(vol, text="🔊", font=ctk.CTkFont("Segoe UI", 13),
