@@ -16,7 +16,7 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-REM Alten Build löschen
+REM Delete Old Build
 if exist dist\NXAudioTool rmdir /s /q dist\NXAudioTool
 if exist build rmdir /s /q build
 
@@ -45,6 +45,6 @@ if %errorlevel% neq 0 (
 
 echo.
 echo [NXPlayer] Build successful!
-echo Ausgabe: dist\NXAudioTool\NXAudioTool.exe
+echo Output: dist\NXAudioTool\NXAudioTool.exe
 echo.
 pause
