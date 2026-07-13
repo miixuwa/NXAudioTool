@@ -109,9 +109,3 @@ This project was created without any reverse-engineering techniques, purely thro
 # License
 
 This project is licensed under the [GNU GPL 3.0 License](https://www.gnu.org/licenses/gpl-3.0.en.html). For more information about the chosen license, please read [this](https://github.com/miixuwa/NXAudioTool/blob/main/LICENSE).
-
----
-
-# Suggestions
-
-*I will continue expanding this software from time to time while taking user-suggestions. If there is anything you would like to see in the NXAudioTool, feel free to Direct Message me on Discord under **@miixu***.
